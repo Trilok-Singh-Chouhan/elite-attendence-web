@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard | Elite Attendance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2 class="brand neon-text" style="font-size: 1.2rem; margin-bottom: 30px;">ELITE</h2>
+            <div id="teacherHeader" class="faculty-badge"></div>
+            <nav class="side-nav">
+                <button class="btn-glow" style="width: 100%; background: var(--accent);" onclick="logout()">Logout</button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1 style="margin-bottom: 30px;">Elite <span class="neon-text">Dashboard</span></h1>
+            
+            <section class="card" style="margin-bottom: 40px;">
+                <h3 style="margin-bottom: 20px; color: var(--secondary);">Initialize Course</h3>
+                <div style="display: flex; gap: 15px;" class="management-grid">
+                    <input type="text" id="className" placeholder="Course Name (e.g. CS-402 Graphics)">
+                    <button class="btn-glow" onclick="createClass()">Create</button>
+                </div>
+            </section>
+
+            <h3 style="margin-bottom: 20px; letter-spacing: 2px;">ACTIVE UNIVERSITY COURSES</h3>
+            <div id="classList" class="management-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;"></div>
+        </main>
+    </div>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
