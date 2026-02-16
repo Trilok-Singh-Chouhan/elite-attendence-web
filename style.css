@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;800&display=swap');
+
+:root {
+    --bg-dark: #020408;
+    --glass-bg: rgba(10, 15, 28, 0.7);
+    --primary: #00f2ff;
+    --secondary: #7000ff;
+    --accent: #ff007a;
+    --success: #00ff88;
+    --text: #f8fafc;
+    --text-dim: #64748b;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before, body::after {
+    content: ''; position: fixed; width: 45vw; height: 45vw;
+    border-radius: 50%; z-index: -1; filter: blur(120px); opacity: 0.12;
+    animation: orbit 25s infinite linear;
+}
+body::before { background: var(--secondary); top: -10%; left: -10%; }
+body::after { background: var(--primary); bottom: -10%; right: -10%; animation-delay: -12.5s; }
+
+@keyframes orbit {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(10vw, 20vh) scale(1.1); }
+    66% { transform: translate(-5vw, 10vh) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+h1, h2, .brand {
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.neon-text { color: var(--primary); text-shadow: 0 0 15px rgba(0, 242, 255, 0.5); }
+
+.app-container {
+    display: flex;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 30px;
+    gap: 30px;
+}
+
+.sidebar {
+    width: 300px;
+    position: sticky;
+    top: 30px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+}
+
+.faculty-badge {
+    background: linear-gradient(135deg, rgba(112,0,255,0.1), rgba(0,242,255,0.1));
+    border-left: 4px solid var(--primary);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.side-nav { margin-top: auto; }
+
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 30px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover { border-color: rgba(0, 242, 255, 0.3); transform: translateY(-5px); }
+
+input {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    padding: 16px !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
+
+#rollNo { border-left: 4px solid var(--accent) !important; }
+#studentName { border-left: 4px solid var(--secondary) !important; }
+
+.btn-glow {
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    color: #000;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-glow:hover { transform: scale(1.03); box-shadow: 0 0 30px rgba(0, 242, 255, 0.4); }
+.btn-glow.success { background: var(--success); }
+
+.table-wrapper { margin-top: 20px; overflow-x: auto; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+
+thead th { text-align: left; padding: 15px; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
+
+tbody td { background: rgba(255, 255, 255, 0.02); padding: 18px 15px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+tbody td:first-child { border-left: 1px solid var(--border); border-radius: 15px 0 0 15px; }
+tbody td:last-child { border-right: 1px solid var(--border); border-radius: 0 15px 15px 0; }
+
+.student-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; margin-bottom: 12px; gap: 10px; }
+
+.radio-toggle { display: flex; background: #000; padding: 5px; border-radius: 12px; }
+.radio-toggle input { display: none; }
+.radio-toggle span { padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: bold; color: var(--text-dim); transition: 0.3s; }
+.radio-toggle input:checked + span { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
+
+@media (max-width: 900px) {
+    .app-container { flex-direction: column; padding: 15px; }
+    .sidebar { width: 100%; position: relative; top: 0; height: auto; }
+    .management-grid { grid-template-columns: 1fr !important; }
+    .student-row { flex-direction: column; text-align: center; padding: 25px !important; }
+    .radio-toggle { width: 100%; justify-content: center; }
+    .btn-glow { width: 100%; }
+    tbody td { padding: 15px 10px; font-size: 0.85rem; }
+}
+
+.card { animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) both; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
