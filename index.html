@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elite Attendance | Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <div class="app-container" style="justify-content: center; align-items: center; min-height: 100vh;">
+        <div class="card" style="width: 100%; max-width: 400px; text-align: center;">
+            <h1 class="neon-text brand" id="mainHeading" style="font-size: 2rem; margin-bottom: 10px;">ELITE</h1>
+            <p id="subHeading" style="color: var(--primary); margin-bottom: 30px; font-size: 0.8rem; font-weight: 800;">FACULTY MANAGEMENT SYSTEM</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <input type="text" id="username" placeholder="Faculty Username">
+                <input type="password" id="password" placeholder="Secure Password">
+                <button class="btn-glow" onclick="handleAuth()" id="authBtn" style="width: 100%;">Enter Portal</button>
+            </div>
+            
+            <p id="loginError" style="color: var(--accent); margin-top: 20px; font-size: 0.8rem; font-weight: bold;"></p>
+            <a href="javascript:void(0)" onclick="toggleAuthMode()" id="toggleText" style="color: var(--text-dim); text-decoration: none; font-size: 0.8rem; margin-top: 20px; display: block;">New Faculty? Register</a>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
