@@ -126,15 +126,37 @@ function renderClasses(classes) {
 
   document.getElementById('classList').innerHTML =
     classes.map(c => `
-      <div class="card"
-        onclick="window.location.href='attendance.html?class=${c.id}&name=${encodeURIComponent(c.class_name)}'"
-        style="cursor:pointer">
-        <h3 class="neon-text">${c.class_name}</h3>
-        <p style="font-size:0.7rem; margin-top:15px; color:var(--text-dim)">
-          OPEN RECORDS →
-        </p>
-      </div>`).join('')
+      <div class="card" style="position:relative">
+
+        <button 
+          onclick="event.stopPropagation(); deleteClass('${c.id}')"
+          style="
+            position:absolute;
+            top:10px;
+            right:10px;
+            background:var(--accent);
+            border:none;
+            color:#fff;
+            padding:5px 10px;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:0.7rem;
+          ">
+          ✖
+        </button>
+
+        <div onclick="window.location.href='attendance.html?class=${c.id}&name=${encodeURIComponent(c.class_name)}'"
+             style="cursor:pointer">
+
+          <h3 class="neon-text">${c.class_name}</h3>
+          <p style="font-size:0.7rem; margin-top:15px; color:var(--text-dim)">
+            OPEN RECORDS →
+          </p>
+        </div>
+      </div>
+    `).join('')
 }
+
 
 window.createClass = async function() {
 
@@ -159,6 +181,27 @@ window.createClass = async function() {
   input.value = ""
   loadDashboard()
 }
+window.deleteClass = async function(classId) {
+
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this class? This will remove all students and attendance data."
+  )
+
+  if (!confirmDelete) return
+
+  const { error } = await supabase
+    .from("classes")
+    .delete()
+    .eq("id", classId)
+
+  if (error) {
+    alert("Error deleting class: " + error.message)
+    return
+  }
+
+  loadDashboard()
+}
+
 
 
 
