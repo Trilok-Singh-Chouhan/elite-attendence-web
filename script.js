@@ -138,6 +138,9 @@ function renderClasses(classes) {
 
 window.createClass = async function() {
 
+  console.log("Current User Object:", currentUser)
+  console.log("Current User ID:", currentUser?.id)
+
   const input = document.getElementById('className')
   if (!input.value) return
 
@@ -156,6 +159,7 @@ window.createClass = async function() {
   input.value = ""
   loadDashboard()
 }
+
 
 
 
