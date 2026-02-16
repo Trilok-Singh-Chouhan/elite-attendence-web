@@ -141,14 +141,22 @@ window.createClass = async function() {
   const input = document.getElementById('className')
   if (!input.value) return
 
-  await supabase.from("classes").insert([{
-    faculty_id: currentUser.id,
-    class_name: input.value
-  }])
+  const { data, error } = await supabase
+    .from("classes")
+    .insert([{
+      faculty_id: currentUser.id,
+      class_name: input.value
+    }])
+
+  if (error) {
+    alert("Error: " + error.message)
+    return
+  }
 
   input.value = ""
   loadDashboard()
 }
+
 
 
 
